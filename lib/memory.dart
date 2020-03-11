@@ -7,6 +7,7 @@ class Memory {
   String _opereation;
 
   void applyCommand(String label) {
+    
     if (label == 'AC') {
       _clear();
     } else if (OPERATIONS.contains(label)) {
@@ -42,24 +43,20 @@ class Memory {
 
   }
   _setOperation(String operation){
-    
-    if(_bufferIndex==0){
-      if(operation != '='){
-         _bufferIndex ++;
+    if (_bufferIndex == 0) {
+      if (operation != '=') {
+        _bufferIndex++;
       }
-      
-    }else{
-
-      if(!_operationUsed){
+    } else {
+      if (operation == '=' || !_operationUsed) {
         _buffer[0] = _calculate();
         result = _buffer[0].toString();
-        result = result.endsWith('.0') ? result.replaceAll('.0', ''): result;
+        result = result.endsWith('.0') ? result.replaceAll('.0', '') : result;
       }
-
-      
     }
     _operationUsed = true;
-    if(operation != '='){
+
+    if (operation != '=') {
       _opereation = operation;
     }
   }
