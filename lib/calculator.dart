@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_teste/memory.dart';
+import 'package:share/share.dart';
 
 class Calculator extends StatefulWidget {
   @override
@@ -14,11 +15,20 @@ class _CalculatorState extends State<Calculator> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Calculadora', style: TextStyle(color: Colors.white),),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.deepPurple,
+        actions: <Widget>[
+          new IconButton(icon: new Icon(Icons.share),
+              onPressed: (){
+                Share.share('Este aplicativo pode ser encontrado em https://github.com/GabrielGoncalvesOliveira/calculadora-flutter');
+              },
+              ),
+        ]
+
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          _buildMiniDisplay(),
           _buildDisplay(),
           Divider(
             height: 0.2,
@@ -26,6 +36,22 @@ class _CalculatorState extends State<Calculator> {
           _buildKeyboard(),
         ],
       ),
+    );
+  }
+
+  _buildMiniDisplay(){
+    return Expanded(
+      child: Container(
+        child: Text(
+          memory.extenso,
+          textAlign: TextAlign.end,
+          style: TextStyle(
+            fontSize: 25,
+            color: Colors.white,
+            fontFamily: 'Calculator'
+          )
+        ),
+      )
     );
   }
 
@@ -39,7 +65,7 @@ class _CalculatorState extends State<Calculator> {
           style: TextStyle(
             fontSize: 80,
             color: Colors.white,
-            fontFamily: 'Calculator',
+            fontFamily: 'Calculator'
           ),
         ),
       ),

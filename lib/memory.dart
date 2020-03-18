@@ -5,6 +5,7 @@ class Memory {
   int _bufferIndex = 0;
   bool _operationUsed = false;
   String _opereation;
+  String extenso;
 
   void applyCommand(String label) {
     
@@ -40,7 +41,7 @@ class Memory {
       case '/': return _buffer[0] / _buffer[1];
       case '%': return _buffer[0] % _buffer[1];
     }
-
+    extenso += _buffer[1].toString();
   }
   _setOperation(String operation){
     if (_bufferIndex == 0) {
